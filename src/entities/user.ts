@@ -6,7 +6,9 @@ import {
   OneToMany,
 } from "typeorm";
 import { Exclude } from "class-transformer";
-import { v4 as uuid } from "uuid";
+import { Bet } from "./user_match_bet";
+import { RankingUsers } from "./ranking_users";
+import { Pool } from "./pool";
 
 @Entity("users")
 export class User {
@@ -17,18 +19,21 @@ export class User {
   name: string;
 
   @Column({ unique: true })
-  email!: string;
+  email: string;
 
   @Column()
   @Exclude()
-  password!: string;
+  password: string;
 
   @Column()
-  isAdm!: boolean;
+  isAdm: boolean;
 
-  /* constructor() {
-    if (!this.id) {
-      this.id = uuid();
-    }
-  } */
+  @OneToMany(() => Bet, (bet) => bet.id)
+  bet: Bet;
+
+  @OneToOne(() => RankingUsers, { eager: true })
+  rankingUsers: RankingUsers;
+
+  @OneToMany(() => Pool, (pool) => pool.name)
+  pool: Pool[];
 }
