@@ -6,7 +6,7 @@
   "author": "Christ1anGall <christiangall92@icloud.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev .",
+    "dev": "ts-node-dev src/server.ts",
     "test": "jest",
     "build": "yarn tsc"
   },
