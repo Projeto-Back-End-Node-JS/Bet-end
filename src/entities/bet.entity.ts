@@ -8,7 +8,7 @@ import {
 } from "typeorm";
 import { Matches } from "./matches.entity";
 
-@Entity("user_match_bet")
+@Entity("bet")
 export class Bet {
   @PrimaryGeneratedColumn("uuid")
   readonly id: string;
