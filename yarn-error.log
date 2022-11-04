@@ -1,30 +1,28 @@
 Arguments: 
-  /home/joaomaia/.nvm/versions/node/v16.17.0/bin/node /home/joaomaia/.nvm/versions/node/v16.17.0/bin/yarn add @types/modules
+  /snap/node/6853/bin/node /snap/node/6853/bin/yarn.js add [200~ bcrypt: ^5.1.0,
 
 PATH: 
-  /home/joaomaia/.nvm/versions/node/v16.17.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
 
 Yarn version: 
   1.22.19
 
 Node version: 
-  16.17.0
+  16.18.0
 
 Platform: 
   linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@types%2fmodules: Not found
-      at Request.params.callback [as _callback] (/home/joaomaia/.nvm/versions/node/v16.17.0/lib/node_modules/yarn/lib/cli.js:66145:18)
-      at Request.self.callback (/home/joaomaia/.nvm/versions/node/v16.17.0/lib/node_modules/yarn/lib/cli.js:140890:22)
-      at Request.emit (node:events:513:28)
-      at Request.<anonymous> (/home/joaomaia/.nvm/versions/node/v16.17.0/lib/node_modules/yarn/lib/cli.js:141862:10)
-      at Request.emit (node:events:513:28)
-      at IncomingMessage.<anonymous> (/home/joaomaia/.nvm/versions/node/v16.17.0/lib/node_modules/yarn/lib/cli.js:141784:12)
-      at Object.onceWrapper (node:events:627:28)
-      at IncomingMessage.emit (node:events:525:35)
-      at endReadableNT (node:internal/streams/readable:1358:12)
-      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+  TypeError [ERR_UNESCAPED_CHARACTERS]: https://registry.yarnpkg.com/[200~: Request path contains unescaped characters
+      at new NodeError (node:internal/errors:387:5)
+      at new ClientRequest (node:_http_client:182:13)
+      at Object.request (node:https:357:10)
+      at Request.module.exports.Request.start (/snap/node/6853/lib/cli.js:141452:32)
+      at Request.module.exports.Request.end (/snap/node/6853/lib/cli.js:142211:10)
+      at end (/snap/node/6853/lib/cli.js:141265:14)
+      at Immediate.<anonymous> (/snap/node/6853/lib/cli.js:141279:7)
+      at processImmediate (node:internal/timers:466:21)
 
 npm manifest: 
   {
@@ -37,7 +35,8 @@ npm manifest:
     "scripts": {
       "dev": "ts-node-dev src/server.ts",
       "test": "jest",
-      "build": "yarn tsc"
+      "build": "yarn tsc",
+      "typeorm": "typeorm-ts-node-commonjs"
     },
     "dependencies": {
       "@types/bcrypt": "^5.0.0",
@@ -285,9 +284,9 @@ Lockfile:
       "@types/istanbul-lib-report" "*"
   
   "@types/jest@^29.2.0":
-    version "29.2.1"
-    resolved "https://registry.yarnpkg.com/@types/jest/-/jest-29.2.1.tgz#31fda30bdf2861706abc5f1730be78bed54f83ee"
-    integrity sha512-nKixEdnGDqFOZkMTF74avFNr3yRqB1ZJ6sRZv5/28D5x2oLN14KApv7F9mfDT/vUic0L3tRCsh3XWpWjtJisUQ==
+    version "29.2.2"
+    resolved "https://registry.yarnpkg.com/@types/jest/-/jest-29.2.2.tgz#874e7dc6702fa6a3fe6107792aa98636dcc480b4"
+    integrity sha512-og1wAmdxKoS71K2ZwSVqWPX6OVn3ihZ6ZT2qvZvZQm90lJVDyXIjYcu4Khx2CNIeaFv12rOU/YObOsI3VOkzog==
     dependencies:
       expect "^29.0.0"
       pretty-format "^29.0.0"
@@ -2466,7 +2465,7 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-20.2.9.tgz#2eb7dc3b0289718fc295f362753845c41a0c94ee"
     integrity sha512-y11nGElTIV+CT3Zv9t7VKl+Q3hTQoT9a1Qzezhhl6Rp21gJ/IVTW7Z3y9EWXhuUBC2Shnf+DX0antecpAwSP8w==
   
-  yargs-parser@^21.0.0:
+  yargs-parser@^21.1.1:
     version "21.1.1"
     resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-21.1.1.tgz#9096bceebf990d21bb31fa9516e0ede294a77d35"
     integrity sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==
@@ -2485,9 +2484,9 @@ Lockfile:
       yargs-parser "^20.2.2"
   
   yargs@^17.3.1:
-    version "17.6.0"
-    resolved "https://registry.yarnpkg.com/yargs/-/yargs-17.6.0.tgz#e134900fc1f218bc230192bdec06a0a5f973e46c"
-    integrity sha512-8H/wTDqlSwoSnScvV2N/JHfLWOKuh5MVla9hqLjK3nsfyy6Y4kDSYSvkU5YCUEPOSnRXfIyx3Sq+B/IWudTo4g==
+    version "17.6.2"
+    resolved "https://registry.yarnpkg.com/yargs/-/yargs-17.6.2.tgz#2e23f2944e976339a1ee00f18c77fedee8332541"
+    integrity sha512-1/9UrdHjDZc0eOU0HxOHoS78C69UD3JRMvzlJ7S79S2nTaWRA/whGCTV8o9e/N/1Va9YIV7Q4sOxD8VV4pCWOw==
     dependencies:
       cliui "^8.0.1"
       escalade "^3.1.1"
@@ -2495,7 +2494,7 @@ Lockfile:
       require-directory "^2.1.1"
       string-width "^4.2.3"
       y18n "^5.0.5"
-      yargs-parser "^21.0.0"
+      yargs-parser "^21.1.1"
   
   yn@3.1.1:
     version "3.1.1"
