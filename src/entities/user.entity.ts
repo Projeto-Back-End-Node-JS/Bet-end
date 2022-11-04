@@ -2,13 +2,13 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
   OneToOne,
   OneToMany,
 } from "typeorm";
 import { Exclude } from "class-transformer";
-import { Bet } from "./user_match_bet";
-import { RankingUsers } from "./ranking_users";
-import { Pool } from "./pool";
+import { PoolUsers } from "./poolUsers.entity";
 
 @Entity("users")
 export class User {
@@ -28,12 +28,12 @@ export class User {
   @Column()
   isAdm: boolean;
 
-  @OneToMany(() => Bet, (bet) => bet.id)
-  bet: Bet;
+  @CreateDateColumn()
+  createdAt: Date;
 
-  @OneToOne(() => RankingUsers, { eager: true })
-  rankingUsers: RankingUsers;
+  @UpdateDateColumn()
+  updatedAt: Date;
 
-  @OneToMany(() => Pool, (pool) => pool.name)
-  pool: Pool[];
+  @OneToMany(() => PoolUsers, (poolUsers) => poolUsers.user)
+  poolUsers: PoolUsers[];
 }
