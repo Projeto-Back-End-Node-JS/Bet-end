@@ -7,13 +7,19 @@ import userRoutes from "./routes/userRoutes.routes";
 import sessionRoutes from "./routes/sessionRoutes.routes";
 import poolRoutes from "./routes/poolRoutes.routes";
 
+
 const app = express();
 app.use(express.json());
+
+
+app.use(userRoutes);
+app.use(sessionRoutes);
+app.use(errorMiddleware)
+
 
 app.use("/users", userRoutes);
 app.use("/login", sessionRoutes);
 app.use("/pools", poolRoutes);
 
-app.use(errorMiddleware);
 
 export default app;
