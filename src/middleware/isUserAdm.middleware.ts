@@ -19,7 +19,7 @@ export const isAdmUser = (req: Request, res: Response, next: NextFunction) => {
             .json({ message: "user not has Authorization " });
         }
 
-        req.isAdm = decoded.isAdm;
+        req.user = decoded.isAdm;
 
         next();
       }
