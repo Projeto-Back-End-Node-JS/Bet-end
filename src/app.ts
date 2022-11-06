@@ -12,12 +12,14 @@ import betRoutes from "./routes/betRoutes.routes";
 const app = express();
 app.use(express.json());
 
+app.use(userRoutes);
+app.use(sessionRoutes);
+app.use(errorMiddleware);
+
 app.use("/users", userRoutes);
 app.use("/login", sessionRoutes);
 app.use("/matches", matchRoutes);
 app.use("/pools", poolRoutes);
 app.use("/bets", betRoutes);
-
-app.use(errorMiddleware);
 
 export default app;
