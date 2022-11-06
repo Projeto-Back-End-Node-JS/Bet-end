@@ -4,3 +4,8 @@ export interface IUserRequest {
   password: string;
   isAdm: boolean;
 }
+
+export interface IUserLogin {
+  email: string;
+  password: string;
+}
