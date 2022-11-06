@@ -6,5 +6,4 @@ const sessionRoutes = Router();
 
 sessionRoutes.post("/login", userLoginController);
 
-
 export default sessionRoutes;
