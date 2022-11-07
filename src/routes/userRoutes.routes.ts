@@ -1,12 +1,32 @@
 import { Router } from "express";
 import userCreateController from "../controllers/user/userCreate.controller";
-import userAlreadyExitsUtils from "../utils/userAlreadyExits.utils";
+import userDeleteController from "../controllers/user/userDelete.controller";
+import userListController from "../controllers/user/userList.controller";
+import userUpdateController from "../controllers/user/userUpdate.controller";
+import userAlreadyExitsUtils from "../utils/user/userAlreadyExits.utils";
+import userNotFoundUtils from "../utils/user/userNotFound.utils";
+import userUpdatePasswordUtils from "../utils/user/userUpdatePassword.utils";
+import tokenMiddleware from "../middleware/tokenAuth.middleware";
+import { isAdmUser } from "../middleware/isUserAdm.middleware";
 
 const userRoutes = Router();
 
-userRoutes.post("/", userAlreadyExitsUtils, userCreateController);
-userRoutes.get("/");
-userRoutes.patch("/:id");
-userRoutes.delete("/:id");
+userRoutes.post("", userAlreadyExitsUtils, userCreateController);
+userRoutes.get("", tokenMiddleware, isAdmUser, userListController);
+userRoutes.patch(
+  "/:id",
+  tokenMiddleware,
+  isAdmUser,
+  userNotFoundUtils,
+  userUpdatePasswordUtils,
+  userUpdateController
+);
+userRoutes.delete(
+  "/:id",
+  tokenMiddleware,
+  isAdmUser,
+  userNotFoundUtils,
+  userDeleteController
+);
 
 export default userRoutes;
