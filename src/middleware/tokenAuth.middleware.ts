@@ -20,8 +20,8 @@ const tokenMiddleware = async (
         message: "Invalid token",
       });
     }
-    req.userId! = decoded.userId!;
-    req.isAdm! = decoded.isAdm!;
+    req.user! = decoded.userId!;
+    req.user! = decoded.isAdm!;
     return next();
   });
 };
