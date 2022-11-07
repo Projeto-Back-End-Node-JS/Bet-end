@@ -1,3 +1,4 @@
+import { instanceToInstance } from "class-transformer";
 import { Request, Response } from "express";
 import { AppError, handleError } from "../../errors/appError";
 import userCreateService from "../../services/user/userCreate.service";
@@ -8,7 +9,7 @@ const userCreateController = async (req: Request, res: Response) => {
 
     const newUser = await userCreateService({ email, name, password, isAdm });
 
-    return res.status(201).json(newUser);
+    return res.status(201).json(instanceToInstance(newUser));
   } catch (error) {
     if (error instanceof AppError) {
       handleError(error, res);
