@@ -5,6 +5,7 @@ export interface IParticipants {
 
 export interface IPoolRequest {
   name: string;
+  owner: string;
 }
 
 export interface IPool {

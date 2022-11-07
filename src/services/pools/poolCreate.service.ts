@@ -2,7 +2,7 @@ import AppDataSource from "../../data-source";
 import { Pool } from "../../entities/pool.entity";
 import { User } from "../../entities/user.entity";
 import { AppError } from "../../errors/appError";
-import { IPoolRequest } from "./../../interfaces/pool.interfaces";
+import { IPoolRequest } from "../../interfaces/pool";
 
 const createPoolService = async ({ name, owner }: IPoolRequest) => {
   const poolRepository = AppDataSource.getRepository(Pool);
