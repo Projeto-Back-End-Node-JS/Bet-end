@@ -4,7 +4,6 @@ import userLoginController from "../controllers/sessions/userLogin.controller";
 
 const sessionRoutes = Router();
 
-sessionRoutes.post("/login", userLoginController);
-
+sessionRoutes.post("", userLoginController);
 
 export default sessionRoutes;
