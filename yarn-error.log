@@ -37,8 +37,9 @@ npm manifest:
     "scripts": {
       "dev": "ts-node-dev src/server.ts",
       "test": "jest",
-      "build": "yarn tsc",
-      "typeorm": "typeorm-ts-node-commonjs"
+      "build": "tsc",
+      "typeorm": "typeorm-ts-node-commonjs",
+      "start": "node dist/server.js"
     },
     "dependencies": {
       "@types/bcrypt": "^5.0.0",
