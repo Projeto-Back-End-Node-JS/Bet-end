@@ -1,9 +1,12 @@
-import { Entity, ManyToOne } from "typeorm";
+import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Pool } from "./pool.entity";
 import { User } from "./user.entity";
 
 @Entity("poolUsers")
 export class PoolUsers {
+  @PrimaryGeneratedColumn("uuid")
+  readonly id: string;
+
   @ManyToOne(() => User)
   user: User;
 
