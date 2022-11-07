@@ -16,9 +16,9 @@ const matchListService = async (id: string) /* : Promise<Matches> */ => {
 
   const matchList = await matchRepository.find({
     where: {
-      pool: {
-        id: pool.id,
-      },
+      // pool: {
+      //   id: pool.id,
+      // },
     },
   });
 

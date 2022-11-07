@@ -23,7 +23,6 @@ const matchesCreateService = async (
     hour,
     team1,
     team2,
-    pool: pool,
   });
 
   await matchesRepository.save(newMatch);
