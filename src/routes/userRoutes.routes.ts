@@ -6,17 +6,27 @@ import userUpdateController from "../controllers/user/userUpdate.controller";
 import userAlreadyExitsUtils from "../utils/user/userAlreadyExits.utils";
 import userNotFoundUtils from "../utils/user/userNotFound.utils";
 import userUpdatePasswordUtils from "../utils/user/userUpdatePassword.utils";
+import tokenMiddleware from "../middleware/tokenAuth.middleware";
+import { isAdmUser } from "../middleware/isUserAdm.middleware";
 
 const userRoutes = Router();
 
 userRoutes.post("", userAlreadyExitsUtils, userCreateController);
-userRoutes.get("", userListController);
+userRoutes.get("", tokenMiddleware, isAdmUser, userListController);
 userRoutes.patch(
   "/:id",
+  tokenMiddleware,
+  isAdmUser,
   userNotFoundUtils,
   userUpdatePasswordUtils,
   userUpdateController
 );
-userRoutes.delete("/:id", userNotFoundUtils, userDeleteController);
+userRoutes.delete(
+  "/:id",
+  tokenMiddleware,
+  isAdmUser,
+  userNotFoundUtils,
+  userDeleteController
+);
 
 export default userRoutes;
