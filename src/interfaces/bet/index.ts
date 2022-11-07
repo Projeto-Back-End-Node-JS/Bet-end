@@ -1,6 +1,8 @@
 export interface IBetRequest {
   result: string;
   score: number;
+  matchId: string;
+  userId: string;
 }
 
 export interface IBet {
