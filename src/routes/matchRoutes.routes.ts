@@ -3,10 +3,17 @@ import matchesCreateController from "../controllers/matches/matchesCreate.contro
 import matchListController from "../controllers/matches/matchList.controller";
 import { isAdmUser } from "../middleware/isUserAdm.middleware";
 import tokenMiddleware from "../middleware/tokenAuth.middleware";
+import matchAlreadyExists from "../utils/matchAlreadyExists.utils";
 
 const matchRoutes = Router();
 
-matchRoutes.post("/", tokenMiddleware, isAdmUser, matchesCreateController);
+matchRoutes.post(
+  "",
+  matchAlreadyExists,
+  tokenMiddleware,
+  isAdmUser,
+  matchesCreateController
+);
 matchRoutes.get("/:id/pool", matchListController);
 matchRoutes.patch("/:id");
 matchRoutes.delete("/:id");
