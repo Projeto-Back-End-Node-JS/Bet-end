@@ -1,22 +1,20 @@
-import AppDataSource from "../../data-source";
 import { Pool } from "../../entities/pool.entity";
-import { User } from "../../entities/user.entity";
+import AppDataSource from "../../data-source";
 import { AppError } from "../../errors/appError";
-import { IPoolRequest } from "../../interfaces/pool";
 
-const createPoolService = async ({ name, owner }: IPoolRequest) => {
+const poolCreateService = async (name: string, owner: any) => {
   const poolRepository = AppDataSource.getRepository(Pool);
-  const userRepository = AppDataSource.getRepository(User);
 
-  const userOwner = await userRepository.findOneBy({ id: owner });
+  const poolName = poolRepository.findOneBy({
+    name,
+  });
 
-  if (!userOwner) {
-    throw new AppError(404, "User not exist");
+  if (!poolName) {
+    throw new AppError(400, "Pool already exist");
   }
-
   const pool = poolRepository.create({
     name,
-    owner: userOwner,
+    owner,
   });
 
   await poolRepository.save(pool);
@@ -24,4 +22,4 @@ const createPoolService = async ({ name, owner }: IPoolRequest) => {
   return pool;
 };
 
-export default createPoolService;
+export default poolCreateService;

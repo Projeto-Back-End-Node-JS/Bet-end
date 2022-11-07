@@ -1,13 +1,19 @@
 import { Request, Response } from "express";
-import createPoolService from "../../services/pools/poolCreate.service";
-import { IPoolRequest } from "../../interfaces/pool";
+import { AppError, handleError } from "../../errors/appError";
+import poolCreateService from "../../services/pools/poolCreate.service";
 
-const createPoolController = async (req: Request, res: Response) => {
-  const pool: IPoolRequest = req.body;
+const poolCreateController = async (req: Request, res: Response) => {
+  try {
+    const poolRequest = req.body.name;
+    const owner = req.user.userId;
+    const poolCreate = await poolCreateService(poolRequest, owner);
 
-  const createPool = await createPoolService(pool);
-
-  res.status(201).json(createPool);
+    return res.status(201).json(poolCreate);
+  } catch (error) {
+    if (error instanceof AppError) {
+      handleError(error, res);
+    }
+  }
 };
 
-export default createPoolController;
+export default poolCreateController;
