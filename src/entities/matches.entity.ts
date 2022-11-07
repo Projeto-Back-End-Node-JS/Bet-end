@@ -3,9 +3,7 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  ManyToOne,
 } from "typeorm";
-import { Pool } from "./pool.entity";
 
 @Entity("matches")
 export class Matches {
@@ -32,7 +30,4 @@ export class Matches {
 
   @CreateDateColumn()
   createdAt: Date;
-
-  @ManyToOne(() => Pool, { eager: true })
-  pool: Pool;
 }
