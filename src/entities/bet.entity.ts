@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import { Matches } from "./matches.entity";
+import { User } from "./user.entity";
 
 @Entity("bet")
 export class Bet {
@@ -22,15 +23,15 @@ export class Bet {
   @Column({ type: "integer", default: 0 })
   points: number;
 
-  @Column()
-  userId: string;
-
   @CreateDateColumn()
   createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @ManyToOne(() => Matches, { eager: true })
+  @ManyToOne(() => Matches)
   matches: Matches;
+
+  @ManyToOne(() => User)
+  user: User;
 }
