@@ -14,7 +14,7 @@ matchRoutes.post(
   isAdmUser,
   matchesCreateController
 );
-matchRoutes.get("/:id/pool", matchListController);
+matchRoutes.get("", matchListController);
 matchRoutes.patch("/:id");
 matchRoutes.delete("/:id");
 
