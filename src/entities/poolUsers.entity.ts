@@ -7,7 +7,7 @@ export class PoolUsers {
   @PrimaryGeneratedColumn("uuid")
   readonly id: string;
 
-  @ManyToOne(() => User)
+  @ManyToOne(() => User, { eager: true })
   user: User;
 
   @ManyToOne(() => Pool)
