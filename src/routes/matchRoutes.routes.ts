@@ -1,4 +1,5 @@
 import { Router } from "express";
+import matchDeleteController from "../controllers/matches/matchDelete.controller";
 import matchesCreateController from "../controllers/matches/matchesCreate.controller";
 import matchListController from "../controllers/matches/matchList.controller";
 import { isAdmUser } from "../middleware/isUserAdm.middleware";
@@ -16,6 +17,6 @@ matchRoutes.post(
 );
 matchRoutes.get("", matchListController);
 matchRoutes.patch("/:id");
-matchRoutes.delete("/:id");
+matchRoutes.delete("/:id", tokenMiddleware, isAdmUser, matchDeleteController);
 
 export default matchRoutes;
