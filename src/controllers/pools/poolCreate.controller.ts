@@ -1,13 +1,11 @@
 import { Request, Response } from "express";
-import createPoolService from "../../services/pools/poolCreate.service";
-import { IPoolRequest } from "../../interfaces/pool";
+import { IPoolRequest } from "../../interfaces/pools";
+import poolCreateService from "../../services/pools/poolCreate.service";
 
-const createPoolController = async (req: Request, res: Response) => {
+const poolCreateController = async (req: Request, res: Response) => {
   const pool: IPoolRequest = req.body;
-
-  const createPool = await createPoolService(pool);
-
+  const createPool = await poolCreateService(pool);
   res.status(201).json(createPool);
 };
 
-export default createPoolController;
+export default poolCreateController;
