@@ -14,6 +14,12 @@ const poolCreateService = async ({ name, owner }: IPoolRequest) => {
     throw new AppError(404, "User not exist");
   }
 
+  const nameAlreadyExist = await poolRepository.findOneBy({ name });
+
+  if (nameAlreadyExist) {
+    throw new AppError(404, "Name already exist");
+  }
+
   const createPool = poolRepository.create({
     name,
     owner: user,
