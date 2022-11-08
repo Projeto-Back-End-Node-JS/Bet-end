@@ -19,3 +19,8 @@ export interface IPool {
 export interface IPoolUpdate {
   name: string;
 }
+
+export interface IPoolMatches {
+  poolId: string;
+  matcheId: string;
+}

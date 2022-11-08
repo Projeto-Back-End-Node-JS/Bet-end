@@ -6,6 +6,8 @@ import listDataPoolController from "../controllers/pools/poolListData.controller
 import updatePoolController from "../controllers/pools/poolUpdate.controller";
 import isOwner from "../middleware/isOwner.middleware";
 import tokenMiddleware from "../middleware/tokenAuth.middleware";
+import poolMatchesCreateController from "../controllers/poolMatches/poolMatchesCreate.controller";
+import createPoolController from "../controllers/pools/poolCreate.controller";
 
 const poolRoutes = Router();
 
