@@ -21,3 +21,7 @@ export interface IBetUpdate {
   score?: number;
   points?: number;
 }
+
+export interface IBetUpdateAdm {
+  points?: number;
+}
