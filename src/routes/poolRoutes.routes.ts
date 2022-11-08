@@ -4,18 +4,30 @@ import deletePoolController from "../controllers/pools/poolDelete.controller";
 import listPoolController from "../controllers/pools/poolList.controller";
 import listDataPoolController from "../controllers/pools/poolListData.controller";
 import updatePoolController from "../controllers/pools/poolUpdate.controller";
-import isOwner from "../middleware/isOwner.middleware";
 import tokenMiddleware from "../middleware/tokenAuth.middleware";
-import poolMatchesCreateController from "../controllers/poolMatches/poolMatchesCreate.controller";
-import createPoolController from "../controllers/pools/poolCreate.controller";
+import isOwnerMiddleware from "../middleware/isOwner.middleware";
 
 const poolRoutes = Router();
 
-poolRoutes.post("/", poolCreateController);
-poolRoutes.post("/:poolId/matches");
+poolRoutes.post("/", tokenMiddleware, poolCreateController);
 poolRoutes.get("/", listPoolController);
-poolRoutes.patch("/:id", tokenMiddleware, isOwner, updatePoolController);
-poolRoutes.delete("/:id", tokenMiddleware, isOwner, deletePoolController);
-poolRoutes.get("/:id", tokenMiddleware, isOwner, listDataPoolController);
+poolRoutes.patch(
+  "/:id",
+  tokenMiddleware,
+  isOwnerMiddleware,
+  updatePoolController
+);
+poolRoutes.delete(
+  "/:id",
+  tokenMiddleware,
+  isOwnerMiddleware,
+  deletePoolController
+);
+poolRoutes.get(
+  "/:id",
+  tokenMiddleware,
+  isOwnerMiddleware,
+  listDataPoolController
+);
 
 export default poolRoutes;
