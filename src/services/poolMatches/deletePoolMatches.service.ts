@@ -13,7 +13,7 @@ const deletePoolMatchService = async (idMatch: string) => {
 
   await poolMatchesRepository.delete(findMatch!.id);
 
-  return { message: "Matche deleted" };
+  return findMatch;
 };
 
 export default deletePoolMatchService;

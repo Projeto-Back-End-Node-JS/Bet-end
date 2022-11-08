@@ -13,21 +13,10 @@ matchRoutes.post(
   "",
   matchAlreadyExists,
   tokenMiddleware,
-  isOwnerMiddleware,
   matchesCreateController
 );
 matchRoutes.get("", matchListController);
-matchRoutes.patch(
-  "/:id",
-  tokenMiddleware,
-  isOwnerMiddleware,
-  matchUpdateController
-);
-matchRoutes.delete(
-  "/:id",
-  tokenMiddleware,
-  isOwnerMiddleware,
-  matchDeleteController
-);
+matchRoutes.patch("/:id", tokenMiddleware, matchUpdateController);
+matchRoutes.delete("/:id", tokenMiddleware, matchDeleteController);
 
 export default matchRoutes;

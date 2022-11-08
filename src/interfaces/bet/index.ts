@@ -3,6 +3,7 @@ export interface IBetRequest {
   score: number;
   matchId: string;
   userId: string;
+  poolId: string;
 }
 
 export interface IBet {

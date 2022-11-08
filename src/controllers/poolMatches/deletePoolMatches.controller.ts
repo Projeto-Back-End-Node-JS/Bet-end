@@ -4,7 +4,7 @@ import deletePoolMatchService from "../../services/poolMatches/deletePoolMatches
 const deletePoolMatchController = async (req: Request, res: Response) => {
   const idMatch: string = req.params.id;
   const deleteMatch = await deletePoolMatchService(idMatch);
-  res.status(204).json(deleteMatch);
+  return res.status(204).send({ message: "Match deleted" });
 };
 
 export default deletePoolMatchController;

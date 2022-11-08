@@ -7,18 +7,8 @@ import tokenMiddleware from "../middleware/tokenAuth.middleware";
 
 const poolUsersRoutes = Router();
 
-poolUsersRoutes.post(
-  "",
-  tokenMiddleware,
-  isOwnerMiddleware,
-  createPoolUsersController
-);
+poolUsersRoutes.post("", tokenMiddleware, createPoolUsersController);
 poolUsersRoutes.get("/:id", listUsersPoolController);
-poolUsersRoutes.delete(
-  "/:id",
-  tokenMiddleware,
-  isOwnerMiddleware,
-  deleteUserController
-);
+poolUsersRoutes.delete("/:id", tokenMiddleware, deleteUserController);
 
 export default poolUsersRoutes;
