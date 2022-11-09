@@ -23,7 +23,7 @@ const createPoolMatchesService = async (
   const matche = await matcheRepository.findOneBy({ id: matchesId });
 
   if (!matche) {
-    throw new AppError(404, "Match if not exist");
+    throw new AppError(404, "Match not exist");
   }
 
   const findIdOwner = await poolRepository.findOne({
@@ -35,7 +35,7 @@ const createPoolMatchesService = async (
   });
 
   if (!findIdOwner) {
-    throw new AppError(404, "you are not the owner of the pool");
+    throw new AppError(404, "You are not the owner of the pool");
   }
 
   const findMatch = await poolMatchesRepository.findOne({
