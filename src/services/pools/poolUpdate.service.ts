@@ -15,7 +15,11 @@ const updatePoolService = async (id: string, name: string) => {
     name,
   });
 
-  return updatedPool;
+  const newPool = await poolRepository.findOneBy({
+    id,
+  });
+
+  return newPool;
 };
 
 export default updatePoolService;

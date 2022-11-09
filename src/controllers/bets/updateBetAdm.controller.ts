@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
-import { IBetUpdateAdm } from "../../interfaces/bet";
+import { IBetUpdate } from "../../interfaces/bet";
 import updateBetAdmService from "../../services/bets/updateBetAdm.service";
 
 const updateBetAdmController = async (req: Request, res: Response) => {
+  const userId: string = req.user.id!;
   const idBet: string = req.params.id;
-  const bet: IBetUpdateAdm = req.body;
-  const updateBet = await updateBetAdmService(idBet, bet);
+  const bet: IBetUpdate = req.body;
+  const updateBet = await updateBetAdmService(idBet, bet, userId);
   res.json(updateBet);
 };
 
