@@ -1,3 +1,4 @@
+import { instanceToInstance } from "class-transformer";
 import { Request, Response } from "express";
 import { AppError } from "../../errors/appError";
 import { IPoolRequest } from "../../interfaces/pools";

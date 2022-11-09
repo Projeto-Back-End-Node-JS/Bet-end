@@ -12,23 +12,8 @@ const poolRoutes = Router();
 
 poolRoutes.post("/", tokenMiddleware, poolCreateController);
 poolRoutes.get("/", listPoolController);
-poolRoutes.patch(
-  "/:id",
-  tokenMiddleware,
-  isOwnerMiddleware,
-  updatePoolController
-);
-poolRoutes.delete(
-  "/:id",
-  tokenMiddleware,
-  isOwnerMiddleware,
-  deletePoolController
-);
-poolRoutes.get(
-  "/:id",
-  tokenMiddleware,
-  isOwnerMiddleware,
-  listDataPoolController
-);
+poolRoutes.patch("/:id", tokenMiddleware, updatePoolController);
+poolRoutes.delete("/:id", tokenMiddleware, deletePoolController);
+poolRoutes.get("/:id", tokenMiddleware, listDataPoolController);
 
 export default poolRoutes;
