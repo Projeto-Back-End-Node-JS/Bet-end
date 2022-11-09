@@ -5,24 +5,49 @@ import { PoolMatches } from "../../entities/poolMatches.entity";
 import { AppError } from "../../errors/appError";
 import { IPoolMatches } from "../../interfaces/matches";
 
-const createPoolMatchesService = async ({
-  matchesId,
-  poolId,
-}: IPoolMatches) => {
+const createPoolMatchesService = async (
+  { matchesId, poolId }: IPoolMatches,
+  idOwner: string
+) => {
   const poolMatchesRepository = AppDataSource.getRepository(PoolMatches);
 
   const poolRepository = AppDataSource.getRepository(Pool);
   const matcheRepository = AppDataSource.getRepository(Matches);
 
   const pool = await poolRepository.findOneBy({ id: poolId });
-  const matche = await matcheRepository.findOneBy({ id: matchesId });
 
   if (!pool) {
     throw new AppError(404, "Pool if not exist");
   }
 
+  const matche = await matcheRepository.findOneBy({ id: matchesId });
+
   if (!matche) {
     throw new AppError(404, "Matche if not exist");
+  }
+
+  const findIdOwner = await poolRepository.findOne({
+    where: {
+      owner: {
+        id: idOwner,
+      },
+    },
+  });
+
+  if (!findIdOwner) {
+    throw new AppError(404, "you are not the owner of the pool");
+  }
+
+  const findMatch = await poolMatchesRepository.findOne({
+    where: {
+      matches: {
+        id: matchesId,
+      },
+    },
+  });
+
+  if (findMatch) {
+    throw new AppError(404, "Match has already been added");
   }
 
   const poolMatches = poolMatchesRepository.create({

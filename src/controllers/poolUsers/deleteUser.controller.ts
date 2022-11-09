@@ -3,7 +3,8 @@ import deleteUserService from "../../services/poolUsers/deleteUser.service";
 
 const deleteUserController = async (req: Request, res: Response) => {
   const idUser: string = req.params.id;
-  const deleteUser = await deleteUserService(idUser);
+  const idOwner: string = req.user.id!;
+  const deleteUser = await deleteUserService(idUser, idOwner);
   res.status(204).json(deleteUser);
 };
 
