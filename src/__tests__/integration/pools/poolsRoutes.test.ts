@@ -23,6 +23,7 @@ let tokenAdmin: string = "";
 let tokenUser2: string = "";
 
 let poolId: string = "";
+
 describe("Test pool routes", () => {
   let connection: DataSource;
 
@@ -57,6 +58,11 @@ describe("Test pool routes", () => {
       .set("Authorization", `Bearer ${tokenUser}`);
 
     expect(result.body).toHaveProperty("id");
+    expect(result.body).toHaveProperty("name");
+    expect(result.body).toHaveProperty("createdAt");
+    expect(result.body).toHaveProperty("updatedAt");
+    expect(result.body).toHaveProperty("owner");
+    expect(result.status).toBe(201);
   });
 
   test("POST /pools - shold not be able create pool without authorization token ", async () => {
@@ -122,6 +128,7 @@ describe("Test pool routes", () => {
     expect(result.body).toHaveProperty("message");
     expect(result.status).toBe(401);
   });
+
   test("DELETE /pools/:id - shold be able to delete pool", async () => {
     const poolToBeDelete = await request(app)
       .get("/pools")
