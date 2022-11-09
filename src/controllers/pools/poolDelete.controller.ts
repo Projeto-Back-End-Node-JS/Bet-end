@@ -5,8 +5,9 @@ import { AppError, handleError } from "../../errors/appError";
 const deletePoolController = async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
+    const idOwner = req.user.id;
 
-    await deletePoolService(id);
+    await deletePoolService(id, idOwner!);
 
     return res.status(200).json({
       message: "Pool deleted with sucess",
