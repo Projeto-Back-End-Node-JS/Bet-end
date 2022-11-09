@@ -7,6 +7,7 @@ import {
   UpdateDateColumn,
 } from "typeorm";
 import { Matches } from "./matches.entity";
+import { Pool } from "./pool.entity";
 import { User } from "./user.entity";
 
 @Entity("bet")
@@ -34,4 +35,7 @@ export class Bet {
 
   @ManyToOne(() => User)
   user: User;
+
+  @ManyToOne(() => Pool)
+  pool: Pool;
 }

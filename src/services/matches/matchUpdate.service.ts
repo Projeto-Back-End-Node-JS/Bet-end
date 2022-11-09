@@ -2,6 +2,7 @@ import AppDataSource from "../../data-source";
 import { Matches } from "../../entities/matches.entity";
 import { AppError } from "../../errors/appError";
 import { IMatchUpdate } from "../../interfaces/match";
+import updateResultBetService from "../bets/updateResultBet.service";
 
 const matchUpdateService = async (id: string, matchData: IMatchUpdate) => {
   const matchRepository = AppDataSource.getRepository(Matches);
