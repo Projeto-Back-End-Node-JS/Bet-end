@@ -4,10 +4,9 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
+  ManyToOne,
 } from "typeorm";
-import { PoolMatches } from "./poolMatches.entity";
-import { PoolUsers } from "./poolUsers.entity";
+import { User } from "./user.entity";
 
 @Entity("pool")
 export class Pool {
@@ -23,12 +22,6 @@ export class Pool {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column()
-  owner: string;
-
-  @OneToMany(() => PoolUsers, (poolUsers) => poolUsers.pool)
-  poolUsers: PoolUsers[];
-
-  @OneToMany(() => PoolMatches, (poolMatches) => poolMatches.pool)
-  poolMatches: PoolMatches[];
+  @ManyToOne(() => User, { eager: true })
+  owner: User;
 }

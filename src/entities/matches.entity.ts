@@ -3,9 +3,7 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  OneToMany,
 } from "typeorm";
-import { PoolMatches } from "./poolMatches.entity";
 
 @Entity("matches")
 export class Matches {
@@ -32,7 +30,4 @@ export class Matches {
 
   @CreateDateColumn()
   createdAt: Date;
-
-  @OneToMany(() => PoolMatches, (poolMatches) => poolMatches.matches)
-  poolMatches: PoolMatches[];
 }

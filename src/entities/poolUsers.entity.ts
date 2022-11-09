@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Pool } from "./pool.entity";
 import { User } from "./user.entity";
 
@@ -10,6 +10,6 @@ export class PoolUsers {
   @ManyToOne(() => User, { eager: true })
   user: User;
 
-  @ManyToOne(() => Pool, { eager: true })
+  @ManyToOne(() => Pool)
   pool: Pool;
 }

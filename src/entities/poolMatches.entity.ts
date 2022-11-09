@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
+import { Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Matches } from "./matches.entity";
 import { Pool } from "./pool.entity";
 
@@ -7,9 +7,9 @@ export class PoolMatches {
   @PrimaryGeneratedColumn("uuid")
   readonly id: string;
 
-  @ManyToOne(() => Pool, { eager: true })
-  pool: Pool;
-
   @ManyToOne(() => Matches, { eager: true })
   matches: Matches;
+
+  @ManyToOne(() => Pool)
+  pool: Pool;
 }
