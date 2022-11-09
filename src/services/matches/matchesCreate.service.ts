@@ -1,6 +1,6 @@
 import AppDataSource from "../../data-source";
 import { Matches } from "../../entities/matches.entity";
-import { IMatchesRequest } from "./../../interfaces/matches/index";
+import { IMatchesRequest } from "./../../interfaces/match";
 
 const matchesCreateService = async ({
   day,

@@ -1,3 +1,4 @@
+import { IMatchesRequest } from "../../../interfaces/match";
 import { IUserLogin, IUserRequest } from "../../../interfaces/user";
 
 export const mockedUser: IUserRequest = {
@@ -22,4 +23,11 @@ export const mockedUserLogin: IUserLogin = {
 export const mockedAdminLogin: IUserLogin = {
   email: "gabriel@mail.com",
   password: "123456",
+};
+
+export const mockedMatch: IMatchesRequest = {
+  day: "2022/11/25",
+  hour: "12:30",
+  team1: "Brasil",
+  team2: "Alemanha",
 };
