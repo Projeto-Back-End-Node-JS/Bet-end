@@ -1,3 +1,4 @@
+import { IMatchUpdate } from "./../../../interfaces/match/index";
 import { IMatchesRequest } from "../../../interfaces/match";
 import { IUserLogin, IUserRequest } from "../../../interfaces/user";
 
@@ -30,4 +31,16 @@ export const mockedMatch: IMatchesRequest = {
   hour: "12:30",
   team1: "Brasil",
   team2: "Alemanha",
+};
+
+export const mockedOtherMatch: IMatchesRequest = {
+  day: "2022/11/20",
+  hour: "12:30",
+  team1: "França",
+  team2: "Sérvia",
+};
+
+export const mockedUpdateMatch: IMatchUpdate = {
+  result: "Brasil",
+  score: 2,
 };
