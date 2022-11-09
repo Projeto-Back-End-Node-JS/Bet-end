@@ -1,34 +1,43 @@
 import AppDataSource from "../../data-source";
 import { Bet } from "../../entities/bet.entity";
-import { Matches } from "../../entities/matches.entity";
 
-const updateResultBetService = async (betId: string) => {
-  const matchesRepository = AppDataSource.getRepository(Matches);
+const updateResultBetService = async (id: string) => {
   const betsRepository = AppDataSource.getRepository(Bet);
 
-  const match = await matchesRepository.findOneBy({
-    id: betId,
+  const bet = await betsRepository.findOne({
+    where: {
+      id: id,
+    },
+    relations: {
+      matches: true,
+    },
   });
 
-  const bet = await betsRepository.findOneBy({
-    id: betId,
+  const updateResult = async () => {
+    let betPoints = 0;
+
+    if (bet!.result === bet!.matches!.result) {
+      betPoints = betPoints + 3;
+    }
+
+    if (bet!.score === bet!.matches!.score) {
+      betPoints = betPoints + 2;
+    }
+
+    return betPoints;
+  };
+
+  await betsRepository.update(id, {
+    points: await updateResult(),
   });
 
-  let betPoints = 0;
-
-  if (bet!.result === match!.result) {
-    betPoints = betPoints + 3;
-  }
-
-  if (bet!.score === match!.score) {
-    betPoints = betPoints + 2;
-  }
-
-  await betsRepository.update(betId, {
-    points: betPoints,
+  const betResultUpdated = await betsRepository.findOne({
+    where: {
+      id: id,
+    },
   });
 
-  return bet;
+  return betResultUpdated;
 };
 
 export default updateResultBetService;
