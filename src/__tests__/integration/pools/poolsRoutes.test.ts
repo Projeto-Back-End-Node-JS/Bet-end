@@ -6,11 +6,8 @@ import app from "../../../app";
 import { describe, expect, test } from "@jest/globals";
 import {
   mockedAdmin,
-  mockedAdminDelete,
-  mockedAdminDeleteLogin,
   mockedAdminLogin,
   mockedPool,
-  mockedPoolDelete,
   mockedPoolWithoutId,
   mockedUser,
   mockedUserLogin,
@@ -20,7 +17,7 @@ let tokenUser: string = "";
 
 let tokenAdmin: string = "";
 
-describe("Testando rotas pools", () => {
+describe("Test pool routes", () => {
   let connection: DataSource;
 
   beforeAll(async () => {
@@ -48,7 +45,10 @@ describe("Testando rotas pools", () => {
 
     mockedPool.owner = id;
 
-    const result = await request(app).post("/pools").send(mockedPool);
+    const result = await request(app)
+      .post("/pools")
+      .send(mockedPool)
+      .set("Authorization", `Bearer ${tokenUser}`);
 
     expect(result.body).toHaveProperty("id");
   });
@@ -76,34 +76,31 @@ describe("Testando rotas pools", () => {
     expect(result.body).toHaveLength(1);
   });
 
-  test("GET /pools - shold not be able to list pool without been adm", async () => {
-    await request(app).post("/users").send(mockedAdmin);
+  //   test("GET /pools - shold not be able to list pool without been adm", async () => {
+  //     await request(app).post("/users").send(mockedAdmin);
 
-    const userLoginResponse = await request(app)
-      .post("/login")
-      .send(mockedUserLogin);
+  //     const userLoginResponse = await request(app)
+  //       .post("/login")
+  //       .send(mockedUserLogin);
 
-    tokenUser = userLoginResponse.body.token;
+  //     tokenUser = userLoginResponse.body.token;
 
-    const result = await request(app)
-      .get("/pools")
-      .set("Authorization", `Bearer ${tokenUser}`);
+  //     const result = await request(app)
+  //       .get("/pools")
+  //       .set("Authorization", `Bearer ${tokenUser}`);
 
-    expect(result.body).toHaveProperty("message");
-    expect(result.status).toBe(403);
-  });
+  //     expect(result.body).toHaveProperty("message");
+  //     expect(result.status).toBe(403);
+  //   });
 
   test("DELETE /pools/:id - shold be able to delete pool", async () => {
     const poolToBeDelete = await request(app)
       .get("/pools")
-      .set("Authorization", `Bearer ${tokenAdmin}`);
-
-    console.log(poolToBeDelete.body);
+      .set("Authorization", `Bearer ${tokenUser}`);
 
     const result = await request(app)
       .delete(`/pools/${poolToBeDelete.body[0].id}`)
-      .set("Authorization", `Bearer ${tokenAdmin}`);
-    console.log(result.body);
+      .set("Authorization", `Bearer ${tokenUser}`);
 
     expect(result.body).toHaveProperty("message");
     expect(result.status).toBe(200);
