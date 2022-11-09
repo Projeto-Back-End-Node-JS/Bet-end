@@ -17,14 +17,14 @@ const deletePoolService = async (id: string, idOwner: string) => {
   const findOwner = await userRepository.findOneBy({
     id: idOwner,
   });
-  console.log("test:", findOwner);
+
   if (!findOwner) {
     throw new AppError(401, "You not owner");
   }
 
   const owner = findPool.owner.id === findOwner.id;
   const adm = findOwner.isAdm;
-  console.log("test2:", owner, adm);
+
   if (!owner && !adm) {
     throw new AppError(401, "You not owner");
   }

@@ -3,7 +3,7 @@ import { Matches } from "../../entities/matches.entity";
 import { Pool } from "../../entities/pool.entity";
 import { PoolMatches } from "../../entities/poolMatches.entity";
 import { AppError } from "../../errors/appError";
-import { IPoolMatches } from "../../interfaces/matches";
+import { IPoolMatches } from "../../interfaces/match";
 
 const createPoolMatchesService = async (
   { matchesId, poolId }: IPoolMatches,

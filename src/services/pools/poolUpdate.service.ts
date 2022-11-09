@@ -16,7 +16,7 @@ const updatePoolService = async (id: string, name: string, idOwner: string) => {
   const findOwner = await userRepository.findOneBy({
     id: idOwner,
   });
-  console.log("test:", findOwner);
+
   if (!findOwner) {
     throw new AppError(401, "You not owner");
   }

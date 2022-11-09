@@ -1,8 +1,6 @@
 export interface IMatchesRequest {
   day: string;
   hour: string;
-  result: string;
-  score: number;
   team1: string;
   team2: string;
 }
@@ -25,4 +23,9 @@ export interface IMatchUpdate {
   team2?: string;
   day?: string;
   hour?: string;
+}
+
+export interface IPoolMatches {
+  poolId: string;
+  matchesId: string;
 }
