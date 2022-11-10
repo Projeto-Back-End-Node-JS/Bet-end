@@ -2,8 +2,16 @@
   Bet-End - API
 </h1>
 
+
 <h3 align="center">API para criação do seu bolão
+<a href="https://github.com/Projeto-Back-End-Node-JS/Bet-end" target="_blank">(GitHub)</a>
 </h3>
+
+<div align="center">
+
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=API%20Bet-end&uri=https%3A%2F%2Fraw.githubusercontent.com%2FProjeto-Back-End-Node-JS%2FBet-end%2Fdevelop%2FBetEnd-Documentation.json%3Ftoken%3DGHSAT0AAAAAABZ6WS4JO2CQMSRLAGXJLVQIY3MINDA)
+
+</div>
 
 ## TECNOLOGIAS
 
