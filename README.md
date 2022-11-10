@@ -12,6 +12,17 @@
 
 </div>
 
+## TECNOLOGIAS
+
+- [Node.js](https://nodejs.org/en/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Express](https://expressjs.com/)
+- [TypeORM](https://typeorm.io/)
+- [JWT](https://jwt.io/)
+- [Bcrypt](https://pypi.org/project/bcrypt/)
+- [Jest](https://jestjs.io/pt-BR/)
+- [Postgres](https://www.postgresql.org/)
+
 ## CREATE USER
 
 ### Todas as chaves são obrigatórias
@@ -39,7 +50,7 @@
 }
 ```
 
-""STATUS 409 CONFLICT""
+""STATUS 400 CONFLICT""
 
 ```json
 {
@@ -156,7 +167,7 @@
 
 ### Retornos esperados
 
-""STATUS 204 OK""
+""STATUS 204 NO CONTENT""
 
 ```json
 No body returned for response
@@ -207,7 +218,7 @@ No body returned for response
 }
 ```
 
-""STATUS 400 BAD REQUEST""
+""STATUS 403 FORBIDDEN""
 
 ```json
 {
@@ -351,14 +362,6 @@ No body returned for response
 }
 ```
 
-""STATUS 403 FORBIDDEN""
-
-```json
-{
-  "message": "User not has authorization "
-}
-```
-
 ""STATUS 404 NOT FOUND""
 
 ```json
@@ -375,7 +378,7 @@ No body returned for response
 
 ### Retornos esperados
 
-""STATUS 204 OK""
+""STATUS 204 NO CONTENT""
 
 ```json
 No body returned for response
@@ -386,14 +389,6 @@ No body returned for response
 ```json
 {
   "message": "Invalid token"
-}
-```
-
-""STATUS 403 FORBIDDEN""
-
-```json
-{
-  "message": "User not has authorization "
 }
 ```
 
@@ -528,21 +523,29 @@ No body returned for response
 }
 ```
 
-""STATUS 403 FORBIDDEN""
+""STATUS 401 UNAUTHORIZED""
 
 ```json
 {
   "status": "error",
-  "statusCode": 403,
+  "statusCode": 401,
   "message": "You not owner"
 }
 ```
 
-""STATUS 404 NOT FOUND""
+""STATUS 400 BAD REQUEST""
 
 ```json
 {
   "message": "Pool not found."
+}
+```
+
+""STATUS 401 UNAUTHORIZED""
+
+```json
+{
+  "message": "You not owner."
 }
 ```
 
@@ -554,7 +557,7 @@ No body returned for response
 
 ### Retornos esperados
 
-""STATUS 204 OK""
+""STATUS 204 NO CONTENT""
 
 ```json
 No body returned for response
@@ -568,22 +571,22 @@ No body returned for response
 }
 ```
 
-""STATUS 403 FORBIDDEN""
+""STATUS 401 UNAUTHORIZED""
 
 ```json
 {
   "status": "error",
-  "statusCode": 403,
+  "statusCode": 401,
   "message": "You not owner"
 }
 ```
 
-""STATUS 404 NOT FOUND""
+""STATUS 400 BAD REQUEST""
 
 ```json
 {
   "status": "error",
-  "statusCode": 404,
+  "statusCode": 400,
   "message": "Pool not found"
 }
 ```
@@ -615,12 +618,12 @@ No body returned for response
 }
 ```
 
-""STATUS 403 FORBIDDEN""
+""STATUS 404 NOT FOUND""
 
 ```json
 {
   "status": "error",
-  "code": 403,
+  "code": 404,
   "message": "You are not the owner of the pool"
 }
 ```
@@ -629,7 +632,7 @@ No body returned for response
 
 ```json
 {
-  "message": "Pool not exist."
+  "message": "Pool if not exist."
 }
 ```
 
@@ -641,7 +644,7 @@ No body returned for response
 }
 ```
 
-""STATUS 409 CONFLICT""
+""STATUS 404 NOT FOUND""
 
 ```json
 {
@@ -690,6 +693,14 @@ No body returned for response
 ]
 ```
 
+""STATUS 404 NOT FOUND""
+
+```json
+{
+  "message": "Pool not exist."
+}
+```
+
 ## DELETE MATCH FROM POOL
 
 ### Nenhum dado é necessário no corpo da requisição
@@ -698,7 +709,7 @@ No body returned for response
 
 ### Retornos esperados
 
-""STATUS 204 OK""
+""STATUS 204 NO CONTENT""
 
 ```json
 No body returned for response
@@ -712,12 +723,12 @@ No body returned for response
 }
 ```
 
-""STATUS 403 FORBIDDEN""
+""STATUS 404 NOT FOUND""
 
 ```json
 {
   "status": "error",
-  "code": 403,
+  "code": 404,
   "message": "You are not the owner of the pool"
 }
 ```
@@ -781,12 +792,12 @@ No body returned for response
 }
 ```
 
-""STATUS 403 FORBIDDEN""
+""STATUS 404 NOT FOUND""
 
 ```json
 {
   "status": "error",
-  "code": 403,
+  "code": 404,
   "message": "You are not the owner of the pool"
 }
 ```
@@ -807,7 +818,7 @@ No body returned for response
 }
 ```
 
-""STATUS 409 CONFLICT""
+""STATUS 404 NOT FOUND""
 
 ```json
 {
@@ -852,6 +863,14 @@ No body returned for response
 ]
 ```
 
+""STATUS 404 NOT FOUND""
+
+```json
+{
+  "message": "Pool not exist."
+}
+```
+
 ## DELETE USER FROM POOL
 
 ### Nenhum dado é necessário no corpo da requisição
@@ -860,7 +879,7 @@ No body returned for response
 
 ### Retornos esperados
 
-""STATUS 204 OK""
+""STATUS 204 NO CONTENT""
 
 ```json
 No body returned for response
@@ -874,12 +893,12 @@ No body returned for response
 }
 ```
 
-""STATUS 403 FORBIDDEN""
+""STATUS 404 NOT FOUND""
 
 ```json
 {
   "status": "error",
-  "code": 403,
+  "code": 404,
   "message": "You are not the owner of the pool"
 }
 ```
@@ -952,6 +971,26 @@ No body returned for response
 }
 ```
 
+""STATUS 404 NOT FOUND""
+
+```json
+{
+  "status": "error",
+  "code": 404,
+  "message": "Match not exist"
+}
+```
+
+""STATUS 404 NOT FOUND""
+
+```json
+{
+  "status": "error",
+  "code": 404,
+  "message": "Pool not exist"
+}
+```
+
 ## LIST BETS FROM USER
 
 ### Nenhum dado é necessário no corpo da requisição
@@ -973,6 +1012,16 @@ No body returned for response
     "updatedAt": "2022-11-09T20:26:07.251Z"
   }
 ]
+```
+
+""STATUS 404 NOT FOUND""
+
+```json
+{
+  "status": "error",
+  "code": 404,
+  "message": "User not exist"
+}
 ```
 
 ## UPDATE BET
@@ -1007,7 +1056,7 @@ No body returned for response
 }
 ```
 
-""STATUS 403 FORBIDDEN""
+""STATUS 404 NOT FOUND""
 
 ```json
 {
@@ -1027,6 +1076,16 @@ No body returned for response
 }
 ```
 
+""STATUS 404 NOT FOUND""
+
+```json
+{
+  "status": "error",
+  "code": 404,
+  "message": "Bet not found!"
+}
+```
+
 ## DELETE BET
 
 ### Nenhum dado é necessário no corpo da requisição
@@ -1035,7 +1094,7 @@ No body returned for response
 
 ### Retornos esperados
 
-""STATUS 204 OK""
+""STATUS 204 NO CONTENT""
 
 ```json
 No body returned for response
@@ -1049,12 +1108,12 @@ No body returned for response
 }
 ```
 
-""STATUS 403 FORBIDDEN""
+""STATUS 404 NOT FOUND""
 
 ```json
 {
   "status": "error",
-  "code": 403,
+  "code": 404,
   "message": "You are not the owner of the bet"
 }
 ```
@@ -1101,12 +1160,12 @@ No body returned for response
 }
 ```
 
-""STATUS 404 NOT FOUND""
+""STATUS 403 FORBIDDEN""
 
 ```json
 {
   "status": "error",
-  "code": 404,
-  "message": "Bet not found"
+  "code": 403,
+  "message": "User not has authorization"
 }
 ```
